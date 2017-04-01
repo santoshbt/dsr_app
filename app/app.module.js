@@ -10,6 +10,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_component_1 = require("./app.component");
 var homepage_component_1 = require("./homepage/homepage.component");
+var report_list_component_1 = require("./report/report-list.component");
 var app_routing_module_1 = require("./app-routing.module");
 var AppModule = (function () {
     function AppModule() {
@@ -20,11 +21,12 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
-            app_routing_module_1.AppRoutingModule
+            app_routing_module_1.AppRoutingModule,
         ],
         declarations: [
             app_component_1.AppComponent,
-            homepage_component_1.HomepageComponent
+            homepage_component_1.HomepageComponent,
+            report_list_component_1.ReportListComponent
         ],
         bootstrap: [
             app_component_1.AppComponent
