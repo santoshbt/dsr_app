@@ -1,0 +1,85 @@
+<h1>Add a New Report</h1>
+
+<div>
+	<form #reportForm="ngForm">
+		<div class="form-group">
+			<label for="employee_id">Employee ID</label>
+			<input type="number"
+							id="employee_id"														
+							name="employee_id"
+							#employee_id='ngModel'
+							[(ngModel)]="report.id"
+			>
+		</div>		
+		<div class="form-group">
+			<label for="employee_name">Employee Name</label>
+			<input type="text"
+							id="employee_name"							
+							name="employee_name"
+							#employee_name='ngModel'
+							[(ngModel)]="report.employee_name"
+			>
+		</div>
+
+		<div class="form-group">
+			<label for="employee_email">Employee Email</label>
+			<input type="email"
+							id="employee_email"														
+							name="employee_email"
+							#tools='ngModel'
+							[(ngModel)]="report.employee_email"
+			>
+		</div>
+
+		<div class="form-group">
+			<label for="project_name">Project Name</label>
+			<input type="text"
+							id="project_name"
+							required
+							name="project_name"
+							#project_name='ngModel'
+							[(ngModel)]="report.project_name"
+			>
+		</div>
+		<div [hidden]="project_name.valid || project_name.pristine">
+				Project name is required
+		</div>
+
+		<div class="form-group">
+			<label for="activity">Activity</label>
+			<input type="text"
+							id="activity"
+							required
+							name="activity"
+							#activity='ngModel'
+							[(ngModel)]="report.activity"
+			>
+		</div>
+		<div [hidden]="activity.valid || activity.pristine">
+				Activity description is required
+		</div>
+
+		<div class="form-group">
+			<label for="weeks_to_complete">Status</label>
+			<select>
+                <option *ngFor="let status of statuses" value= {{status}}>
+                    {{status}}
+                </option>
+            </select>
+		</div>
+
+		<div class="form-group">
+			<label for="duraition">Duration</label>
+			<input type="number"
+							id="duration"
+							name="duration"
+							#duratin='ngModel'
+							[(ngModel)]="report.duration"
+			>
+		</div>
+		<div [hidden]="activity.valid || activity.pristine">
+				Duration is required
+		</div>
+
+	</form>
+</div>
