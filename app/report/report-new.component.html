@@ -46,14 +46,15 @@
 		</div>
 
 		<div class="form-group">
-			<label for="activity">Activity</label>
-			<input type="text"
+			<label for="activity">Activity</label>			
+			<textarea
 							id="activity"
 							required
 							name="activity"
 							#activity='ngModel'
 							[(ngModel)]="report.activity"
-			>
+							rows="4"
+			></textarea>
 		</div>
 		<div [hidden]="activity.valid || activity.pristine">
 				Activity description is required
