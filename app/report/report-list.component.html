@@ -1,1 +1,11 @@
 <h1> Report List </h1>
+
+<div *ngFor="let report of reports">
+    {{report.id}} 
+    {{report.employee_name}}
+    {{report.employee_email}}
+    {{report.project_name}}
+    {{report.activity}}
+    {{report.status}}
+    {{report.duration_in_hours}}
+</div>
