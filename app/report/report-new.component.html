@@ -4,16 +4,15 @@
 
 	<div class="card">
 		<div class="card-block">
-			<form #reportForm="ngForm">
+			<form [formGroup]="reportForm">
 				<div class="form-group row">
 					<label for="employee_id" class="col-2 col-form-label">Employee ID</label>
 					<div class="col-10">
 						<input type="number"
 										class="form-control"
 										id="employee_id"														
-										name="employee_id"
-										#employee_id='ngModel'
-										[(ngModel)]="report.id"
+										name="employee_id"										
+										formControlName="employee_id"
 										disabled
 						>
 					</div>
@@ -24,9 +23,8 @@
 						<input type="text"
 										class="form-control"
 										id="employee_name"							
-										name="employee_name"
-										#employee_name='ngModel'
-										[(ngModel)]="report.employee_name"
+										name="employee_name"										
+										formControlName="employee_name"
 										disabled
 						>
 					</div>
@@ -38,85 +36,104 @@
 						<input type="email"
 										class="form-control"
 										id="employee_email"														
-										name="employee_email"
-										#tools='ngModel'
-										[(ngModel)]="report.employee_email"
+										name="employee_email"								
+										formControlName="employee_email"
 										disabled
 						>
 					</div>
 				</div>
 				<hr />
-				<div class="form-group row">
-					<label for="project_name" class="col-2 col-form-label">Project Name</label>
-					<div class="col-10">
-						<input type="text"
-										class="form-control"
-										id="project_name"
-										required
-										name="project_name"
-										#project_name='ngModel'
-										[(ngModel)]="report.project_name"
-						>
-					</div>
-				</div>
-				<div [hidden]="project_name.valid || project_name.pristine" class="alert alert-danger">
-						Project name is required
-				</div>
+				<div formArrayName="tasks">
+					<div *ngFor="let task of reportForm.controls.tasks.controls; let i=index" class="panel panel-default">
+						 <div class="panel-heading">
+							<h2>Task {{i + 1}}</h2>
+							<span class="glyphicon glyphicon-remove pull-right" *ngIf="reportForm.controls.tasks.controls.length > 1" (click)="removeAddress(i)"></span>
+						</div>
+						<div class="panel-body" [formGroupName]="i">
+							<div class="form-group row">
+								<label for="project_name" class="col-2 col-form-label">Project Name</label>
+								<div class="col-10">
+									<input type="text"
+													class="form-control"
+													id="project_name"
+													required
+													name="project_name"													
+													formControlName="project_name"
+									>
+								</div>
+							</div>
+							<div [hidden]="reportForm.controls.tasks.controls[i].controls.project_name.pristine || reportForm.controls.tasks.controls[i].controls.project_name.valid" class="alert alert-danger">
+									Project name is required
+							</div>
 
-				<div class="form-group row">
-					<label for="activity" class="col-2 col-form-label">Activity</label>
-					<div class="col-10">			
-						<textarea
-										class="form-control"
-										id="activity"
-										required
-										name="activity"
-										#activity='ngModel'
-										[(ngModel)]="report.activity"
-										rows="4"
-						></textarea>
-					</div>
-				</div>
-				<div [hidden]="activity.valid || activity.pristine" class="alert alert-danger">
-						Activity description is required
-				</div>
+							<div class="form-group row">
+								<label for="activity" class="col-2 col-form-label">Activity</label>
+								<div class="col-10">			
+									<textarea
+													class="form-control"
+													id="activity"
+													required
+													name="activity"												
+													rows="4"
+													formControlName="activity"
+									></textarea>
+								</div>
+							</div>
+							<div [hidden]="reportForm.controls.tasks.controls[i].controls.activity.pristine || reportForm.controls.tasks.controls[i].controls.activity.valid" class="alert alert-danger">
+									Activity description is required
+							</div>
 
-				<div class="form-group row">
-					<label for="weeks_to_complete" class="col-2 col-form-label">Status</label>
-					<div class="col-10">
-						<select>
-							<option *ngFor="let status of statuses" value= {{status}}>
-								{{status}}
-							</option>
-						</select>
-					</div>
-				</div>
+							<div class="form-group row">
+								<label for="weeks_to_complete" class="col-2 col-form-label">Status</label>
+								<div class="col-10">
+									<select class="form-control" 
+											id="activity"
+											required
+											name="status"  											
+											formControlName="status">
+										<option *ngFor="let status of statuses" value= {{status}}>
+											{{status}}
+										</option>
+									</select>
+								</div>
+							</div>
+							<div [hidden]="reportForm.controls.tasks.controls[i].controls.status.pristine || reportForm.controls.tasks.controls[i].controls.status.valid"  class="alert alert-danger">
+									Status is required
+							</div>
 
-				<div class="form-group row">
-					<label for="duraition" class="col-2 col-form-label">Duration</label>
-					<div class="col-10">
-						<input type="number"
-										class="form-control"
-										id="duration"
-										name="duration"
-										#duratin='ngModel'
-										[(ngModel)]="report.duration"
-						>
-					</div>
+							<div class="form-group row">
+								<label for="duraition" class="col-2 col-form-label">Duration</label>
+								<div class="col-10">
+									<input type="number"
+													class="form-control"
+													id="duration"
+													name="duration"													
+													formControlName="duration"
+									> Hrs
+								</div>
+							</div>
+							<div [hidden]="reportForm.controls.tasks.controls[i].controls.duration.pristine || reportForm.controls.tasks.controls[i].controls.duration.valid"  class="alert alert-danger">							
+									Duration is required
+							</div>
+						</div>
+						<hr />	
+					</div>					
 				</div>
-				<div [hidden]="activity.valid || activity.pristine" class="alert alert-danger">
-						Duration is required
-				</div>
+				
 
 				<button type="submit"
 						class='btn btn-outline-primary btn-lg'
-						[disabled]="!reportForm.form.valid"
+						[disabled]="!reportForm.valid"
 						[hidden]="submitted"
 					>
 						Update My Report
 					</button>
-
 			</form>
+			<div class="margin-20">
+				<a (click)="addTask()" style="cursor: default">
+					Add another Task +
+				</a>
+        	</div>
 		</div>	
 	</div>
 </div>

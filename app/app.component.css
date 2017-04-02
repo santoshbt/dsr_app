@@ -18,3 +18,8 @@
 a.nav-link.active {
 	color: #e64758 !important;
 }
+
+p.date {
+	color: white;
+	width: 20%;
+}

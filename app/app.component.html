@@ -13,9 +13,10 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/report/new" routerLinkActive="active">New Report</a>
-      </li>      
-    </ul>
+      </li>     
+    </ul>   
   </div>
+  <p class="date text-right">Current Date : {{ date | date: 'dd / MM / yyyy' }}</p>
 </nav>
 
 <router-outlet></router-outlet>
