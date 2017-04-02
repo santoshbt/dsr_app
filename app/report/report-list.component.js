@@ -22,7 +22,8 @@ ReportListComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'report-list',
-        templateUrl: 'report-list.component.html'
+        templateUrl: 'report-list.component.html',
+        styleUrls: ['reports.component.css']
     })
 ], ReportListComponent);
 exports.ReportListComponent = ReportListComponent;

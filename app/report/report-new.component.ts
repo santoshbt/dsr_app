@@ -4,7 +4,8 @@ import {EmployeeReport} from './employee_report';
 @Component({
     moduleId: module.id,
     selector: 'report-new',
-    templateUrl: 'report-new.component.html'
+    templateUrl: 'report-new.component.html',
+    styleUrls: ['reports.css']
 })
 
 export class ReportNewComponent {

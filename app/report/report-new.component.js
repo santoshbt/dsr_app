@@ -19,7 +19,8 @@ ReportNewComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'report-new',
-        templateUrl: 'report-new.component.html'
+        templateUrl: 'report-new.component.html',
+        styleUrls: ['reports.css']
     })
 ], ReportNewComponent);
 exports.ReportNewComponent = ReportNewComponent;
