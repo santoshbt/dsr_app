@@ -127,13 +127,21 @@
 						[hidden]="submitted"
 					>
 						Update My Report
-					</button>
+					</button>					
 			</form>
 			<div class="margin-20">
 				<a (click)="addTask()" style="cursor: default">
 					Add another Task +
 				</a>
         	</div>
+
+			<div class="clearfix"></div>
+
+			<div class="margin-20">
+				<div>myForm details:-</div>
+				<pre>Is myForm valid?: <br>{{reportForm.valid | json}}</pre>
+				<pre>form value: <br>{{reportForm.value | json }}</pre>
+			</div>
 		</div>	
 	</div>
 </div>
