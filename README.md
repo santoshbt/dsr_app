@@ -1,4 +1,4 @@
-# dsr_app
+# Daily Status Report [Application]
 Helps the employees to send their daily status of tasks.
 
 The tool is automated to send the daily status reporting filled by employees, send automated reminders 
