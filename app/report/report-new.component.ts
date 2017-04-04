@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import { FormGroup,FormArray,FormBuilder,Validators } from '@angular/forms';
 
 import {EmployeeReport} from './employee_report';
+import {ReportService} from './report.service';
 
 @Component({
     moduleId: module.id,
@@ -19,7 +20,10 @@ export class ReportNewComponent implements OnInit  {
 
     public reportForm: FormGroup;
 
-    constructor(private _fb: FormBuilder) { }
+    constructor(
+            private _fb: FormBuilder,
+            private reportService: ReportService
+        ) { }
 
         ngOnInit() {
             this.reportForm = this._fb.group({
