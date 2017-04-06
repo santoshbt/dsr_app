@@ -10,10 +10,13 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
+var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var homepage_component_1 = require("./homepage/homepage.component");
 var report_list_component_1 = require("./report/report-list.component");
 var report_new_component_1 = require("./report/report-new.component");
+var project_component_1 = require("./project/project.component");
+var task_component_1 = require("./task/task.component");
 var app_routing_module_1 = require("./app-routing.module");
 var AppModule = (function () {
     function AppModule() {
@@ -27,13 +30,16 @@ AppModule = __decorate([
             app_routing_module_1.AppRoutingModule,
             forms_1.FormsModule,
             forms_1.ReactiveFormsModule,
-            ng_bootstrap_1.NgbModule.forRoot()
+            ng_bootstrap_1.NgbModule.forRoot(),
+            http_1.HttpModule
         ],
         declarations: [
             app_component_1.AppComponent,
             homepage_component_1.HomepageComponent,
             report_list_component_1.ReportListComponent,
-            report_new_component_1.ReportNewComponent
+            report_new_component_1.ReportNewComponent,
+            project_component_1.ProjectComponent,
+            task_component_1.TaskComponent
         ],
         bootstrap: [
             app_component_1.AppComponent

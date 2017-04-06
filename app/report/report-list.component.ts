@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EmployeeReport } from './employee_report';
+import { Employee } from './employee';
 
 @Component({
 	moduleId: module.id,

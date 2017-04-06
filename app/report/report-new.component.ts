@@ -1,20 +1,24 @@
 import {Injectable, Inject} from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import {Component, OnInit} from '@angular/core';
 import { FormGroup,FormArray,FormBuilder,Validators } from '@angular/forms';
 
-import {EmployeeReport} from './employee_report';
+import {Employee} from './employee';
 import {ReportService} from './report.service';
+
+import {ProjectComponent} from '../project/project.component';
 
 @Component({
     moduleId: module.id,
     selector: 'report-new',
     templateUrl: 'report-new.component.html',
-    styleUrls: ['reports.css']
+    styleUrls: ['reports.css'],
+    providers: [ReportService]
 })
 
 @Injectable()
 export class ReportNewComponent implements OnInit  {
-    report = new EmployeeReport;
+    employees: Employee[];
     submitted: boolean = false;
     statuses: string[] = ['WIP', 'Completed', 'Miscellanious'];
 
@@ -27,18 +31,26 @@ export class ReportNewComponent implements OnInit  {
 
         ngOnInit() {
             this.reportForm = this._fb.group({
-                employee_id: [''],
-                employee_name: [''],
-                employee_email: [''],
-                tasks: this._fb.array([
-                    this.initTask(),
+                employee_id: ['22123'],
+                employee_name: ['Santosh'],
+                employee_email: ['santosh.turamari@hpe.com'],
+                projects: this._fb.array([
+                    this.initProject(),
                 ])
             });
         }    
 
-        initTask() {
+        initProject() {
             return this._fb.group({
-                project_name: ['', Validators.required],
+                name: ['', Validators.required],
+                tasks: this._fb.array([
+                    this.initTask()
+                ])
+            })
+        }
+
+        initTask() {
+            return this._fb.group({                
                 activity: ['', Validators.required],
                 status: ['Select', Validators.required],
                 duration: ['', Validators.required]
@@ -54,4 +66,17 @@ export class ReportNewComponent implements OnInit  {
             const control = <FormArray>this.reportForm.controls['tasks'];
             control.removeAt(i);
         }    
+
+        createReport(report) {
+            console.log(report);
+            this.submitted = true;
+            this.reportService.createReport(report)
+                    .subscribe(
+                        data => { return true },
+                        error => {
+                            console.log("Error saving proposal");
+                            return Observable.throw(error);
+                        }
+                    );
+        }
 }

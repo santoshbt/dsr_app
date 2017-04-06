@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable,Inject } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { EmployeeReport } from './employee_report';
+import { Employee } from './employee';
 
 @Injectable()
 export class ReportService {

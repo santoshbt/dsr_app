@@ -10,29 +10,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var Rx_1 = require("rxjs/Rx");
 var core_2 = require("@angular/core");
 var forms_1 = require("@angular/forms");
-var employee_report_1 = require("./employee_report");
+var report_service_1 = require("./report.service");
 var ReportNewComponent = (function () {
-    function ReportNewComponent(_fb) {
+    function ReportNewComponent(_fb, reportService) {
         this._fb = _fb;
-        this.report = new employee_report_1.EmployeeReport;
+        this.reportService = reportService;
         this.submitted = false;
         this.statuses = ['WIP', 'Completed', 'Miscellanious'];
     }
     ReportNewComponent.prototype.ngOnInit = function () {
         this.reportForm = this._fb.group({
-            employee_id: [''],
-            employee_name: [''],
-            employee_email: [''],
+            employee_id: ['22123'],
+            employee_name: ['Santosh'],
+            employee_email: ['santosh.turamari@hpe.com'],
+            projects: this._fb.array([
+                this.initProject(),
+            ])
+        });
+    };
+    ReportNewComponent.prototype.initProject = function () {
+        return this._fb.group({
+            name: ['', forms_1.Validators.required],
             tasks: this._fb.array([
-                this.initTask(),
+                this.initTask()
             ])
         });
     };
     ReportNewComponent.prototype.initTask = function () {
         return this._fb.group({
-            project_name: ['', forms_1.Validators.required],
             activity: ['', forms_1.Validators.required],
             status: ['Select', forms_1.Validators.required],
             duration: ['', forms_1.Validators.required]
@@ -46,6 +54,15 @@ var ReportNewComponent = (function () {
         var control = this.reportForm.controls['tasks'];
         control.removeAt(i);
     };
+    ReportNewComponent.prototype.createReport = function (report) {
+        console.log(report);
+        this.submitted = true;
+        this.reportService.createReport(report)
+            .subscribe(function (data) { return true; }, function (error) {
+            console.log("Error saving proposal");
+            return Rx_1.Observable.throw(error);
+        });
+    };
     return ReportNewComponent;
 }());
 ReportNewComponent = __decorate([
@@ -53,10 +70,12 @@ ReportNewComponent = __decorate([
         moduleId: module.id,
         selector: 'report-new',
         templateUrl: 'report-new.component.html',
-        styleUrls: ['reports.css']
+        styleUrls: ['reports.css'],
+        providers: [report_service_1.ReportService]
     }),
     core_1.Injectable(),
-    __metadata("design:paramtypes", [forms_1.FormBuilder])
+    __metadata("design:paramtypes", [forms_1.FormBuilder,
+        report_service_1.ReportService])
 ], ReportNewComponent);
 exports.ReportNewComponent = ReportNewComponent;
 //# sourceMappingURL=report-new.component.js.map
