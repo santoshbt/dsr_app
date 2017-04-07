@@ -3,8 +3,12 @@ import { Observable } from 'rxjs/Rx';
 import {Component, OnInit} from '@angular/core';
 import { FormGroup,FormArray,FormBuilder,Validators } from '@angular/forms';
 
+<<<<<<< HEAD
 import {Employee} from './employee';
 import {ReportService} from './report.service';
+=======
+import {EmployeeReport} from './employee_report';
+>>>>>>> parent of 77e4bd6... Introducing report service
 
 import {ProjectComponent} from '../project/project.component';
 
@@ -24,10 +28,7 @@ export class ReportNewComponent implements OnInit  {
 
     public reportForm: FormGroup;
 
-    constructor(
-            private _fb: FormBuilder,
-            private reportService: ReportService
-        ) { }
+    constructor(private _fb: FormBuilder) { }
 
         ngOnInit() {
             this.reportForm = this._fb.group({
