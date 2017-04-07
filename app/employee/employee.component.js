@@ -1,0 +1,51 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
+var employee_1 = require("./employee");
+var Rx_1 = require("rxjs/Rx");
+var employee_service_1 = require("./employee.service");
+var EmployeeComponent = (function () {
+    function EmployeeComponent(employeeService) {
+        this.employeeService = employeeService;
+        this.employee = new employee_1.Employee();
+        this.submitted = false;
+        this.statuses = ['WIP', 'Completed', 'Miscellanious'];
+    }
+    EmployeeComponent.prototype.ngOnInit = function () {
+        //     // we will initialize our form here
+        //     this.employee = {
+        //         employee_id: '1234',
+        //         emplo
+        //     };
+    };
+    EmployeeComponent.prototype.createEmployee = function (employee) {
+        this.submitted = true;
+        this.employeeService.createEmployee(employee)
+            .subscribe(function (data) { return true; }, function (error) {
+            console.log("Error saving proposal");
+            return Rx_1.Observable.throw(error);
+        });
+    };
+    return EmployeeComponent;
+}());
+EmployeeComponent = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'employee',
+        templateUrl: 'employee.component.html',
+        styleUrls: ['employee.component.css'],
+        providers: [employee_service_1.EmployeeService]
+    }),
+    __metadata("design:paramtypes", [employee_service_1.EmployeeService])
+], EmployeeComponent);
+exports.EmployeeComponent = EmployeeComponent;
+//# sourceMappingURL=employee.component.js.map

@@ -8,12 +8,12 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/reports" routerLinkActive="active">List Today's Reports</a>
+       <li class="nav-item">
+        <a class="nav-link" routerLink="/employee_reports" routerLinkActive="active">All Reports</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/report/new" routerLinkActive="active">New Report</a>
-      </li>     
+        <a class="nav-link" routerLink="/employee/employee" routerLinkActive="active">Submit Today's report</a>
+      </li>       
     </ul>   
   </div>
   <p class="date text-right">Current Date : {{ date | date: 'dd / MM / yyyy' }}</p>

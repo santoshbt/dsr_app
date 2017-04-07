@@ -1,31 +1,31 @@
-import { Injectable,Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Employee } from './employee';
 
 @Injectable()
-export class ReportService {
-	private reportUrl = 'http://localhost:3002/employees';
+export class EmployeeService {
+	private employeesUrl = 'http://localhost:3002/employees';
 
 	constructor(
 		private http: Http
 	) {}
 
-// 	getReports(): Observable<EmployeeReport[]> {
-// 		return this.http.get(this.proposalsUrl)
-// 										.map((response: Response) => <EmployeeReport[]>response.json())
-// 										.catch(this.handleError);
-// 	}
+	getEmployees(): Observable<Employee[]> {
+		return this.http.get(this.employeesUrl)
+										.map((response: Response) => <Employee[]>response.json())
+										.catch(this.handleError);
+	}
 
-//   getReport(id: number) {
-//     return this.http.get(this.proposalsUrl + "/" + id + '.json');
-//   }
+  getEmployee(id: number) {
+    return this.http.get(this.employeesUrl + "/" + id + '.json');
+  }
 
-  createReport(report) {
+  createEmployee(employee) {
     let headers = new Headers({ 'Content-Type': 'application/json'});
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(this.reportUrl, JSON.stringify(report), { headers: headers}).map((res: Response) => res.json());
+    return this.http.post(this.employeesUrl, JSON.stringify(employee), { headers: headers}).map((res: Response) => res.json());
   }
 
 	private handleError (error: Response | any) {

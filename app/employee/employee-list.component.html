@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="list-group">
+		<a class="list-group-item list-group-item-action active">
+			<h1 class="headline">Employee List</h1>
+		</a>
+		<span *ngFor="let employee of employees" class="list-group-item list-group-item-action">
+			<div class="proposal-link">
+				<h4 class="list-group-item-heading">{{employee.employee_name}} - {{employee.employee_email}} </h4>
+				<h5 class="list-group-item-heading">{{employee.project_name}}</h5>
+				<p class="list-group-item-text">
+					{{ employee.activity }} - {{ employee.status }} - {{employee.duration}}
+				</p>
+			</div>
+		</span>
+	</div>
+</div>

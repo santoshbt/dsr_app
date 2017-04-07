@@ -1,0 +1,132 @@
+<div class="card container form-container">
+	<div class='row'>
+
+		<div class="col-md-6">
+			<h1>Create Employee Report</h1>
+
+			<div>
+				<form (ngSubmit)="createEmployee(employee)" #reportForm="ngForm">
+					<div class="form-group">
+						<label for="employee_id">Employee ID</label>
+						<input type="text"
+										class="form-control"
+										id="employee_id"																				
+										name="employee_id"
+										#employee_id='ngModel'
+										[(ngModel)]="employee.employee_id"                                        
+						>	                      				
+					</div>
+
+                    <div class="form-group">
+						<label for="employee_name">Employee Name</label>
+						<input type="text"
+										class="form-control"
+										id="employee_name"										
+										name="employee_name"
+										#employee_name='ngModel'
+										[(ngModel)]="employee.employee_name"                                        
+						>						
+					</div>
+
+					<div class="form-group">
+						<label for="employee_email">Employee Email</label>
+						<input type="text"
+										class="form-control"
+										id="employee_email"										
+										name="employee_email"
+										#employee_email='ngModel'
+										[(ngModel)]="employee.employee_email"
+                                        
+						>						
+					</div>                   
+
+                    <div class="form-group">
+						<label for="project_name">Project Name</label>
+						<input type="text"
+										class="form-control"
+										id="project_name"
+                                        required										
+										name="project_name"
+										#project_name='ngModel'
+										[(ngModel)]="employee.project_name"                                        
+						>	
+                        <div [hidden]="project_name.valid || project_name.pristine"
+									class='alert alert-danger'
+						>
+							Project name is required
+						</div>						
+					</div>
+
+                    <div class="form-group">
+						<label for="activity">Activity</label>
+						<input type="text"
+										class="form-control"
+										id="activity"
+                                        required										
+										name="activity"
+										#activity='ngModel'
+										[(ngModel)]="employee.activity"                                        
+						>		
+                        <div [hidden]="activity.valid || activity.pristine"
+									class='alert alert-danger'
+						>
+							Activity is required
+						</div>					
+					</div>
+
+                    <div class="form-group">
+						<label for="status"> Status </label>
+                       
+                        <select class="form-control" 
+                                id="status"                                
+                                name="status"  	
+                                required										
+                                #status="ngModel"
+                                [(ngModel)]="employee.status">
+                            <option *ngFor="let status of statuses" value= {{status}}>
+                                {{status}}
+                            </option>
+                        </select>
+                         <div [hidden]="status.valid || status.pristine"
+									class='alert alert-danger'
+						>
+							Status is required
+						</div>   								
+					</div>
+
+                       <div class="form-group">
+						<label for="duration"> Duration </label>
+						<input type="text"
+										class="form-control"
+										id="duration"	
+                                        required									
+										name="duration"
+										#duration='ngModel'
+										[(ngModel)]="employee.duration"
+						>	
+                        <div [hidden]="duration.valid || duration.pristine"
+									class='alert alert-danger'
+						>
+							Duration is required
+						</div> 					
+					</div>
+
+					
+					<button type="submit"
+						class='btn btn-outline-primary btn-lg'
+						[disabled]="!reportForm.form.valid"
+						[hidden]="submitted"
+					>
+						Submit Report
+					</button>
+
+				</form>
+			</div>
+		</div>
+	</div>
+    <div class="margin-20">
+        <a (click)="addTask()" style="cursor: default">
+            Add another Task +
+        </a>
+    </div>
+</div>

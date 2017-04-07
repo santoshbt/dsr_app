@@ -6,10 +6,8 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { ReportListComponent } from './report/report-list.component';
-import { ReportNewComponent } from './report/report-new.component';
-import { ProjectComponent} from './project/project.component';
-import { TaskComponent} from './task/task.component';
+import { EmployeeComponent} from './employee/employee.component';
+import { EmployeeListComponent} from './employee/employee-list.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -25,10 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
 	declarations: [
 		AppComponent,
 		HomepageComponent,
-		ReportListComponent,
-		ReportNewComponent,
-		ProjectComponent,
-		TaskComponent
+		EmployeeComponent,
+		EmployeeListComponent
 	],
 	bootstrap: [
 		AppComponent
