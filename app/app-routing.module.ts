@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+// import {provideRouter, ROUTER_DIRECTIVES} from '@angular/router';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { EmployeeComponent } from './employee/employee.component';
@@ -9,7 +10,7 @@ const routes: Routes = [
 	{ path: '', redirectTo: '/home', pathMatch: 'full' },
 	{ path: 'home', component: HomepageComponent },
 	{ path: 'employee/employee', component: EmployeeComponent },
-	{ path: 'employee_reports/:id', component: EmployeeListComponent },
+	{ path: 'employee_reports/:employee_id', component: EmployeeListComponent },
 ]
 
 @NgModule({

@@ -14,11 +14,16 @@ var router_1 = require("@angular/router");
 var AppComponent = (function () {
     function AppComponent(route) {
         this.route = route;
+        // @Input() 
+        this.employee_id = localStorage.getItem('employee_id');
         this.date = new Date();
+        route.queryParams.subscribe(function (data) {
+            localStorage.setItem('employee_id', data['employee_id']);
+            console.log(data['employee_id']);
+            console.log(localStorage.getItem('employee_id'));
+        });
     }
     AppComponent.prototype.ngOnInit = function () {
-        this.route.queryParams.subscribe(function (data) { return localStorage.setItem('employee_id', '1234'); });
-        console.log(localStorage.getItem('employee_id'));
     };
     return AppComponent;
 }());

@@ -20,12 +20,16 @@ var EmployeeListComponent = (function () {
         this.employeeService = employeeService;
         this.route = route;
         this.mode = "Observable";
+        console.log(localStorage.getItem('employee_id'));
     }
     EmployeeListComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.routeId = this.route.params.subscribe(function (params) {
+            _this.current_employee_id = params['employee_id'];
+        });
         var employeeReportRequest = this.route.params
             .flatMap(function (params) {
-            return _this.employeeService.getEmployeeReports(+params["employee_id"]);
+            return _this.employeeService.getEmployeeReports(+_this.current_employee_id);
         });
         employeeReportRequest.subscribe(function (response) { return _this.employee = response.json(); });
     };
