@@ -30,6 +30,9 @@ var EmployeeService = (function () {
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(this.employeesUrl, JSON.stringify(employee), { headers: headers }).map(function (res) { return res.json(); });
     };
+    EmployeeService.prototype.getEmployeeReports = function (employee_id) {
+        return this.http.get(this.employeesUrl + '/' + employee_id + '/reports.to_json');
+    };
     EmployeeService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure
         var errMsg;

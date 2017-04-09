@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpModule } from '@angular/http';
+// import {WebStorageModule, LocalStorageService} from "angular2-localstorage";
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -18,7 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
 		FormsModule,
 		ReactiveFormsModule,
 		NgbModule.forRoot(),
-		HttpModule
+		HttpModule,
+		// WebStorageModule
 	],
 	declarations: [
 		AppComponent,
@@ -28,6 +30,10 @@ import { AppRoutingModule } from './app-routing.module';
 	],
 	bootstrap: [
 		AppComponent
-	]
+	],
 })
+
+// @Component({
+// 	providers: [LocalStorageService]
+// })
 export class AppModule {}

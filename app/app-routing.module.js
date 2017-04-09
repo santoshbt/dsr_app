@@ -15,7 +15,7 @@ var routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: homepage_component_1.HomepageComponent },
     { path: 'employee/employee', component: employee_component_1.EmployeeComponent },
-    { path: 'employee_reports', component: employee_list_component_1.EmployeeListComponent },
+    { path: 'employee_reports/:id', component: employee_list_component_1.EmployeeListComponent },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

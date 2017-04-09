@@ -28,6 +28,10 @@ export class EmployeeService {
     return this.http.post(this.employeesUrl, JSON.stringify(employee), { headers: headers}).map((res: Response) => res.json());
   }
 
+  getEmployeeReports(employee_id:number){
+    return this.http.get(this.employeesUrl + '/' + employee_id + '/reports.to_json');
+  }
+
 	private handleError (error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;

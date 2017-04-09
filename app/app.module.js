@@ -11,12 +11,16 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var http_1 = require("@angular/http");
+// import {WebStorageModule, LocalStorageService} from "angular2-localstorage";
 var app_component_1 = require("./app.component");
 var homepage_component_1 = require("./homepage/homepage.component");
 var employee_component_1 = require("./employee/employee.component");
 var employee_list_component_1 = require("./employee/employee-list.component");
 var app_routing_module_1 = require("./app-routing.module");
 var AppModule = (function () {
+    // @Component({
+    // 	providers: [LocalStorageService]
+    // })
     function AppModule() {
     }
     return AppModule;
@@ -29,7 +33,7 @@ AppModule = __decorate([
             forms_1.FormsModule,
             forms_1.ReactiveFormsModule,
             ng_bootstrap_1.NgbModule.forRoot(),
-            http_1.HttpModule
+            http_1.HttpModule,
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -39,8 +43,11 @@ AppModule = __decorate([
         ],
         bootstrap: [
             app_component_1.AppComponent
-        ]
+        ],
     })
+    // @Component({
+    // 	providers: [LocalStorageService]
+    // })
 ], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

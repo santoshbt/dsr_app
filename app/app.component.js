@@ -10,10 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(route) {
+        this.route = route;
         this.date = new Date();
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.route.queryParams.subscribe(function (data) { return localStorage.setItem('employee_id', '1234'); });
+        console.log(localStorage.getItem('employee_id'));
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
@@ -23,7 +29,7 @@ AppComponent = __decorate([
         templateUrl: 'app.component.html',
         styleUrls: ['app.component.css']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [router_1.ActivatedRoute])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

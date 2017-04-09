@@ -11,26 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var Rx_1 = require("rxjs/Rx");
+var http_1 = require("@angular/http");
+var employee_1 = require("./employee");
 var employee_service_1 = require("./employee.service");
 var EmployeeListComponent = (function () {
-    function EmployeeListComponent(employeeService, router) {
+    function EmployeeListComponent(http, employeeService, route) {
+        this.http = http;
         this.employeeService = employeeService;
-        this.router = router;
+        this.route = route;
         this.mode = "Observable";
     }
     EmployeeListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        var timer = Rx_1.Observable.timer(0, 5000);
-        timer.subscribe(function () { return _this.getEmployees(); });
-    };
-    EmployeeListComponent.prototype.getEmployees = function () {
-        var _this = this;
-        this.employeeService.getEmployees()
-            .subscribe(function (employees) { return _this.employees = employees; }, function (error) { return _this.errorMessage = error; });
+        var employeeReportRequest = this.route.params
+            .flatMap(function (params) {
+            return _this.employeeService.getEmployeeReports(+params["employee_id"]);
+        });
+        employeeReportRequest.subscribe(function (response) { return _this.employee = response.json(); });
     };
     return EmployeeListComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", employee_1.Employee)
+], EmployeeListComponent.prototype, "employee", void 0);
 EmployeeListComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
@@ -39,8 +43,9 @@ EmployeeListComponent = __decorate([
         styleUrls: ['employee.component.css'],
         providers: [employee_service_1.EmployeeService]
     }),
-    __metadata("design:paramtypes", [employee_service_1.EmployeeService,
-        router_1.Router])
+    __metadata("design:paramtypes", [http_1.Http,
+        employee_service_1.EmployeeService,
+        router_1.ActivatedRoute])
 ], EmployeeListComponent);
 exports.EmployeeListComponent = EmployeeListComponent;
 //# sourceMappingURL=employee-list.component.js.map
